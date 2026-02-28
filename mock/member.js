@@ -8,6 +8,7 @@ const memberStore = [
     province: '北京',
     city: '北京',
     address: '朝阳区建国路88号SOHO现代城A座1201',
+    avatar: '',
   },
   {
     id: 2,
@@ -18,6 +19,7 @@ const memberStore = [
     province: '上海',
     city: '上海',
     address: '浦东新区陆家嘴环路1000号恒生银行大厦18层',
+    avatar: '',
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ const memberStore = [
     province: '广东',
     city: '广州',
     address: '天河区天河路385号太古汇一座3501',
+    avatar: '',
   },
   {
     id: 4,
@@ -38,6 +41,7 @@ const memberStore = [
     province: '浙江',
     city: '杭州',
     address: '西湖区文三路478号华星时代广场B座602',
+    avatar: '',
   },
 ]
 
@@ -71,6 +75,7 @@ export default [
         province: body.province || '',
         city: body.city || '',
         address: body.address,
+        avatar: body.avatar || '',
       }
       memberStore.push(member)
       return {

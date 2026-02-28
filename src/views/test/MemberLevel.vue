@@ -8,6 +8,14 @@
 
     <el-table :data="memberList" border stripe style="width: 100%">
       <el-table-column prop="id" label="ID" width="60" align="center" />
+      <el-table-column label="头像" width="80" align="center">
+        <template #default="{ row }">
+          <el-avatar :size="40" :src="row.avatar" v-if="row.avatar" />
+          <el-avatar :size="40" v-else>
+            {{ row.name ? row.name.charAt(0) : '?' }}
+          </el-avatar>
+        </template>
+      </el-table-column>
       <el-table-column prop="name" label="姓名" width="120" />
       <el-table-column prop="phone" label="手机号" width="140" />
       <el-table-column prop="level" label="会员等级" width="120" align="center">
@@ -43,6 +51,38 @@
       @close="resetForm"
     >
       <el-form ref="formRef" :model="form" :rules="rules" label-width="90px">
+        <el-form-item label="头像" prop="avatar">
+          <div class="avatar-uploader-wrap">
+            <el-upload
+              class="avatar-uploader"
+              action="#"
+              :show-file-list="false"
+              :auto-upload="false"
+              accept="image/*"
+              :on-change="handleAvatarChange"
+            >
+              <img
+                v-if="form.avatar"
+                :src="form.avatar"
+                class="avatar-preview"
+              />
+              <div v-else class="avatar-placeholder">
+                <el-icon :size="28"><Plus /></el-icon>
+                <span>上传头像</span>
+              </div>
+            </el-upload>
+            <el-button
+              v-if="form.avatar"
+              type="danger"
+              size="small"
+              plain
+              class="avatar-remove-btn"
+              @click="form.avatar = ''"
+            >
+              移除
+            </el-button>
+          </div>
+        </el-form-item>
         <el-form-item label="姓名" prop="name">
           <el-input v-model="form.name" placeholder="请输入姓名" />
         </el-form-item>
@@ -86,27 +126,32 @@
 <script>
 import { defineComponent, reactive, ref, toRefs } from 'vue'
 import { ElMessage } from 'element-plus'
+import { Plus } from '@element-plus/icons-vue'
 import { getMembers, addMember, deleteMember, updateMember } from '@/api/member'
 
 export default defineComponent({
   name: 'MemberLevel',
+  components: { Plus },
   setup() {
     const formRef = ref(null)
+
+    const createEmptyForm = () => ({
+      name: '',
+      phone: '',
+      email: '',
+      level: '',
+      province: '',
+      city: '',
+      address: '',
+      avatar: '',
+    })
 
     const state = reactive({
       memberList: [],
       dialogVisible: false,
       isEdit: false,
       editId: null,
-      form: {
-        name: '',
-        phone: '',
-        email: '',
-        level: '',
-        province: '',
-        city: '',
-        address: '',
-      },
+      form: createEmptyForm(),
       rules: {
         name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
         phone: [{ required: true, message: '请输入手机号', trigger: 'blur' }],
@@ -127,6 +172,27 @@ export default defineComponent({
         钻石会员: 'success',
       }
       return map[level] || 'info'
+    }
+
+    const handleAvatarChange = file => {
+      const rawFile = file.raw
+      if (!rawFile) return
+
+      const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
+      if (!validTypes.includes(rawFile.type)) {
+        ElMessage.error('只支持 JPG/PNG/GIF/WEBP 格式的图片')
+        return
+      }
+      if (rawFile.size > 2 * 1024 * 1024) {
+        ElMessage.error('图片大小不能超过 2MB')
+        return
+      }
+
+      const reader = new FileReader()
+      reader.onload = e => {
+        state.form.avatar = e.target.result
+      }
+      reader.readAsDataURL(rawFile)
     }
 
     const fetchList = async () => {
@@ -153,20 +219,13 @@ export default defineComponent({
         province: row.province,
         city: row.city,
         address: row.address,
+        avatar: row.avatar || '',
       }
       state.dialogVisible = true
     }
 
     const resetForm = () => {
-      state.form = {
-        name: '',
-        phone: '',
-        email: '',
-        level: '',
-        province: '',
-        city: '',
-        address: '',
-      }
+      state.form = createEmptyForm()
       if (formRef.value) {
         formRef.value.resetFields()
       }
@@ -208,6 +267,7 @@ export default defineComponent({
       ...toRefs(state),
       formRef,
       levelTagType,
+      handleAvatarChange,
       showAddDialog,
       showEditDialog,
       resetForm,
@@ -225,5 +285,41 @@ export default defineComponent({
 }
 .toolbar {
   margin-bottom: 16px;
+}
+.avatar-uploader-wrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+.avatar-uploader :deep(.el-upload) {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.avatar-uploader :deep(.el-upload:hover) {
+  border-color: #409eff;
+}
+.avatar-preview {
+  width: 100px;
+  height: 100px;
+  display: block;
+  object-fit: cover;
+}
+.avatar-placeholder {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #8c939d;
+  font-size: 12px;
+  gap: 4px;
+}
+.avatar-remove-btn {
+  align-self: flex-start;
+  margin-top: 4px;
 }
 </style>
