@@ -53,7 +53,10 @@ export default [
             },
           ]
         },
-        
+        {
+          name: 'member-level',
+          title: '会员等级',
+        },
         // {
         //   name: 'testAuth',
         //   title: '权限测试',
