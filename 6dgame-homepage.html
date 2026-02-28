@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星期六游戏_小游戏_网页游戏_手机游戏-home.6dgame.cn专业的游戏平台</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft YaHei", "微软雅黑", Arial, sans-serif; background: #f5f5f5; color: #333; font-size: 14px; }
+        a { text-decoration: none; color: inherit; }
+        ul, li { list-style: none; }
+        img { display: block; max-width: 100%; }
+        .inner { width: 1200px; margin: 0 auto; }
+        .clearfix::after { content: ''; display: block; clear: both; }
+
+        /* ========== HEADER ========== */
+        .site-header { background: #fff; height: 70px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); position: relative; z-index: 100; }
+        .site-header .inner { display: flex; align-items: center; height: 100%; }
+        .site-logo { display: flex; align-items: center; margin-right: 40px; }
+        .site-logo .logo-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #f5a623, #e8891c); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-right: 10px; }
+        .site-logo .logo-icon span { color: #fff; font-size: 20px; font-weight: 900; }
+        .site-logo h1 { font-size: 22px; color: #333; font-weight: 700; }
+        .site-logo h1 small { display: block; font-size: 11px; color: #f5a623; font-weight: 400; letter-spacing: 3px; }
+        .site-nav { display: flex; gap: 36px; }
+        .site-nav a { font-size: 16px; color: #555; transition: color .2s; padding: 4px 0; }
+        .site-nav a:hover, .site-nav a.current { color: #0cacff; }
+        .site-search { margin-left: auto; position: relative; }
+        .site-search input[type="text"] { width: 200px; height: 34px; border: 2px solid #e8e8e8; border-radius: 17px; padding: 0 40px 0 16px; font-size: 13px; outline: none; transition: border-color .2s; }
+        .site-search input[type="text"]:focus { border-color: #0cacff; }
+        .site-search .search-btn { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: none; border: none; cursor: pointer; font-size: 16px; color: #999; }
+
+        /* ========== HERO SLIDER ========== */
+        .site-slider { width: 100%; overflow: hidden; position: relative; }
+        .site-slider .slider-wrap { display: flex; transition: transform .6s ease; }
+        .site-slider .slide { min-width: 100%; height: 420px; background-size: cover; background-position: center; position: relative; display: flex; align-items: center; justify-content: center; }
+        .slide-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.5), transparent 60%); }
+        .slide-content { position: relative; z-index: 2; text-align: center; color: #fff; }
+        .slide-content h2 { font-size: 56px; font-weight: 900; text-shadow: 0 2px 20px rgba(0,0,0,0.5); letter-spacing: 6px; }
+        .slide-content p { font-size: 20px; margin-top: 12px; text-shadow: 0 1px 8px rgba(0,0,0,0.5); letter-spacing: 3px; }
+        .slider-dots { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 5; }
+        .slider-dots i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: background .3s; }
+        .slider-dots i.cur { background: #fff; }
+
+        /* ========== TOP SECTION: GAMES + LOGIN ========== */
+        .site-top { width: 1200px; margin: 0 auto; display: flex; gap: 16px; margin-top: -1px; padding-top: 16px; }
+        .recommend-games { display: flex; gap: 14px; flex: 1; }
+        .recommend-games .game-card { flex: 1; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: transform .2s, box-shadow .2s; }
+        .recommend-games .game-card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+        .game-card .card-img { height: 180px; background-size: cover; background-position: center; position: relative; }
+        .game-card .card-img .card-badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.5); color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 3px; }
+        .game-card .card-body { padding: 12px; }
+        .game-card .card-body h3 { font-size: 15px; margin-bottom: 6px; }
+        .game-card .card-body .card-links { display: flex; gap: 8px; font-size: 12px; }
+        .game-card .card-body .card-links .go { background: #0cacff; color: #fff; padding: 3px 14px; border-radius: 3px; }
+        .game-card .card-body .card-links a { color: #999; }
+        .game-card .card-body .card-links a:hover { color: #0cacff; }
+
+        .login-panel { width: 260px; background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); padding: 24px 20px; display: flex; flex-direction: column; }
+        .login-panel h3 { font-size: 16px; text-align: center; margin-bottom: 16px; color: #333; }
+        .login-panel .login-input { width: 100%; height: 38px; border: 1px solid #ddd; border-radius: 4px; padding: 0 12px; font-size: 13px; margin-bottom: 10px; outline: none; }
+        .login-panel .login-input:focus { border-color: #0cacff; }
+        .login-panel .login-opts { display: flex; justify-content: space-between; font-size: 12px; color: #999; margin-bottom: 14px; }
+        .login-panel .login-opts a { color: #0cacff; }
+        .login-panel .login-btn { width: 100%; height: 40px; background: #0cacff; color: #fff; border: none; border-radius: 4px; font-size: 15px; cursor: pointer; transition: background .2s; }
+        .login-panel .login-btn:hover { background: #24b4ff; }
+        .login-panel .login-other { text-align: center; margin-top: 14px; font-size: 12px; color: #999; }
+        .login-panel .login-other span { display: inline-flex; align-items: center; gap: 6px; }
+        .login-panel .login-other .qq-icon { width: 24px; height: 24px; background: #0cacff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
+
+        /* ========== LAYOUT SECTION ========== */
+        .layout-wrap { width: 1200px; margin: 20px auto 0; display: flex; gap: 16px; }
+        .layout-main { flex: 1; }
+        .layout-right { width: 280px; }
+
+        .section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #0cacff; }
+        .section-title h2 { font-size: 18px; color: #333; position: relative; padding-left: 12px; }
+        .section-title h2::before { content: ''; position: absolute; left: 0; top: 3px; width: 4px; height: 18px; background: #0cacff; border-radius: 2px; }
+        .section-title .more { font-size: 13px; color: #999; }
+        .section-title .more:hover { color: #0cacff; }
+
+        /* ========== FEATURED GAMES GRID ========== */
+        .game-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        .game-grid .game-item { background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: transform .2s; }
+        .game-grid .game-item:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+        .game-item .item-img { height: 140px; background-size: cover; background-position: center; position: relative; }
+        .game-item .item-img .hover-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; gap: 10px; opacity: 0; transition: opacity .3s; }
+        .game-item:hover .hover-overlay { opacity: 1; }
+        .hover-overlay .go-btn { background: #0cacff; color: #fff; padding: 5px 16px; border-radius: 3px; font-size: 12px; }
+        .hover-overlay a { color: #ddd; font-size: 12px; }
+        .game-item h3 { font-size: 14px; padding: 10px 12px 4px; }
+        .game-item p { font-size: 12px; color: #999; padding: 0 12px 10px; }
+
+        /* ========== NEW SERVER PANEL ========== */
+        .server-panel { background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .server-tabs { display: flex; border-bottom: 1px solid #eee; }
+        .server-tabs span { flex: 1; text-align: center; padding: 12px 0; font-size: 14px; color: #999; cursor: pointer; transition: color .2s; position: relative; }
+        .server-tabs span.cur { color: #0cacff; }
+        .server-tabs span.cur::after { content: ''; position: absolute; bottom: 0; left: 20%; right: 20%; height: 2px; background: #0cacff; }
+        .server-list { padding: 8px 0; }
+        .server-list a { display: flex; align-items: center; padding: 8px 14px; font-size: 12px; color: #666; transition: background .2s; }
+        .server-list a:hover { background: #f5f9ff; }
+        .server-list .time { color: #999; margin-right: 10px; white-space: nowrap; }
+        .server-list .time b { color: #333; margin-right: 4px; }
+        .server-list .srv-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .server-list .go-srv { color: #0cacff; white-space: nowrap; margin-left: 8px; }
+
+        /* ========== RECOMMEND + NEWS SECTION ========== */
+        .recommend-row { display: flex; gap: 16px; }
+        .recommend-item { flex: 1; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); text-align: center; transition: transform .2s; }
+        .recommend-item:hover { transform: translateY(-3px); }
+        .recommend-item .rec-img { height: 100px; background-size: cover; background-position: center; }
+        .recommend-item h3 { font-size: 14px; padding: 10px 0; }
+
+        .news-panel { background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden; }
+        .news-thumb { height: 120px; background-size: cover; background-position: center; }
+        .news-list { padding: 6px 0; }
+        .news-list a { display: flex; align-items: center; padding: 7px 14px; font-size: 13px; color: #555; transition: background .2s; }
+        .news-list a:hover { background: #f5f9ff; color: #0cacff; }
+        .news-list .news-date { color: #999; margin-right: 12px; font-size: 12px; }
+
+        /* ========== FOOTER ========== */
+        .footer { background: #232323; margin-top: 38px; padding: 30px 0 20px; color: #999; font-size: 12px; }
+        .footer .inner { display: flex; flex-direction: column; align-items: center; }
+        .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+        .footer-logo .ft-icon { width: 36px; height: 36px; background: linear-gradient(135deg, #f5a623, #e8891c); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+        .footer-logo .ft-icon span { color: #fff; font-size: 15px; font-weight: 900; }
+        .footer-logo h2 { color: #ccc; font-size: 16px; }
+        .footer-links { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; justify-content: center; }
+        .footer-links a { color: #999; padding: 0 6px; border-right: 1px solid #555; }
+        .footer-links a:last-child { border-right: none; }
+        .footer-links a:hover { color: #0cacff; }
+        .footer-copy { text-align: center; line-height: 1.8; }
+        .footer-copy a { color: #999; }
+        .footer-copy a:hover { color: #0cacff; }
+        .footer-icons { display: flex; gap: 10px; margin: 16px 0; justify-content: center; flex-wrap: wrap; }
+        .footer-icons a { background: #333; border: 1px solid #444; border-radius: 3px; padding: 6px 10px; font-size: 11px; color: #888; text-align: center; line-height: 1.4; transition: border-color .2s; }
+        .footer-icons a:hover { border-color: #0cacff; color: #aaa; }
+        .footer-warning { text-align: center; font-size: 11px; color: #666; margin-top: 10px; line-height: 1.8; }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="site-header">
+    <div class="inner">
+        <div class="site-logo">
+            <div class="logo-icon"><span>6D</span></div>
+            <h1>GAMES<small>星期六游戏</small></h1>
+        </div>
+        <div class="site-nav">
+            <a href="#" class="current">首页</a>
+            <a href="#">游戏中心</a>
+            <a href="#">新闻中心</a>
+            <a href="#">客服</a>
+        </div>
+        <div class="site-search">
+            <input type="text" placeholder="请输入游戏名">
+            <button class="search-btn">&#128269;</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== HERO SLIDER ===== -->
+<div class="site-slider">
+    <div class="slider-wrap" id="sliderWrap">
+        <div class="slide" style="background: linear-gradient(135deg, #0a1628 0%, #0d2847 30%, #1a0a3e 70%, #2d1b69 100%);">
+            <div class="slide-overlay"></div>
+            <div class="slide-content"><h2>魔幻新世界 畅玩不停</h2><p>神火大陆 · 全新版本火爆来袭</p></div>
+        </div>
+        <div class="slide" style="background: linear-gradient(135deg, #1a0505 0%, #5c1010 40%, #8b1a1a 100%);">
+            <div class="slide-overlay"></div>
+            <div class="slide-content"><h2>百战无双 热血争霸</h2><p>经典策略 · 千人同屏国战</p></div>
+        </div>
+        <div class="slide" style="background: linear-gradient(135deg, #051a0f 0%, #0a3d2a 40%, #1b6b48 100%);">
+            <div class="slide-overlay"></div>
+            <div class="slide-content"><h2>源战役 史诗征途</h2><p>魔幻大世界 · 自由冒险</p></div>
+        </div>
+        <div class="slide" style="background: linear-gradient(135deg, #1a1005 0%, #4a2f0a 40%, #7a4d15 100%);">
+            <div class="slide-overlay"></div>
+            <div class="slide-content"><h2>龙城传奇 复古高爆</h2><p>畅爽打金 · 兄弟再聚首</p></div>
+        </div>
+        <div class="slide" style="background: linear-gradient(135deg, #0a0520 0%, #2a1560 40%, #4a2590 100%);">
+            <div class="slide-overlay"></div>
+            <div class="slide-content"><h2>战玲珑2 唯美仙侠</h2><p>仙侠MMO · 御剑苍穹</p></div>
+        </div>
+    </div>
+    <div class="slider-dots" id="sliderDots">
+        <i class="cur" onclick="goSlide(0)"></i>
+        <i onclick="goSlide(1)"></i>
+        <i onclick="goSlide(2)"></i>
+        <i onclick="goSlide(3)"></i>
+        <i onclick="goSlide(4)"></i>
+    </div>
+</div>
+
+<!-- ===== GAME CARDS + LOGIN ===== -->
+<div class="site-top">
+    <div class="recommend-games">
+        <div class="game-card">
+            <div class="card-img" style="background: linear-gradient(135deg, #0d1b3e, #1a3a6e); display:flex; align-items:center; justify-content:center;">
+                <div class="card-badge">网游</div>
+                <span style="color:#fff; font-size:28px; font-weight:900; text-shadow:0 2px 10px rgba(0,0,0,0.5);">神火大陆</span>
+            </div>
+            <div class="card-body">
+                <h3>神火大陆</h3>
+                <div class="card-links"><a href="#" class="go">进入游戏</a><a href="#">官网</a> | <a href="#">礼包</a></div>
+            </div>
+        </div>
+        <div class="game-card">
+            <div class="card-img" style="background: linear-gradient(135deg, #0a2e1a, #1a6040); display:flex; align-items:center; justify-content:center;">
+                <div class="card-badge">网游</div>
+                <span style="color:#fff; font-size:28px; font-weight:900; text-shadow:0 2px 10px rgba(0,0,0,0.5);">源战役</span>
+            </div>
+            <div class="card-body">
+                <h3>源战役</h3>
+                <div class="card-links"><a href="#" class="go">进入游戏</a><a href="#">官网</a> | <a href="#">礼包</a></div>
+            </div>
+        </div>
+        <div class="game-card">
+            <div class="card-img" style="background: linear-gradient(135deg, #2a0a3e, #5a1a7e); display:flex; align-items:center; justify-content:center;">
+                <div class="card-badge">网游</div>
+                <span style="color:#fff; font-size:28px; font-weight:900; text-shadow:0 2px 10px rgba(0,0,0,0.5);">战玲珑2</span>
+            </div>
+            <div class="card-body">
+                <h3>战玲珑2</h3>
+                <div class="card-links"><a href="#" class="go">进入游戏</a><a href="#">官网</a> | <a href="#">礼包</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="login-panel">
+        <h3>用户登录</h3>
+        <input class="login-input" type="text" placeholder="用户名">
+        <input class="login-input" type="password" placeholder="密码">
+        <div class="login-opts"><label><input type="checkbox" style="vertical-align:-2px;"> 记住用户名</label><a href="#">忘记密码？</a></div>
+        <button class="login-btn">登 录</button>
+        <div class="login-other"><span>其他方式：<span class="qq-icon">Q</span></span></div>
+    </div>
+</div>
+
+<!-- ===== FEATURED GAMES + NEW SERVER ===== -->
+<div class="layout-wrap">
+    <div class="layout-main">
+        <div class="section-title"><h2>精品游戏</h2><a href="#" class="more">更多</a></div>
+        <div class="game-grid">
+            <div class="game-item">
+                <div class="item-img" style="background: linear-gradient(135deg, #0d1b3e, #1a3a6e);">
+                    <div class="hover-overlay"><a href="#" class="go-btn">进入游戏</a><a href="#">官网</a> | <a href="#">礼包</a></div>
+                </div>
+                <h3>神火大陆</h3><p>魔幻ARPG巨作</p>
+            </div>
+            <div class="game-item">
+                <div class="item-img" style="background: linear-gradient(135deg, #3a0a0a, #7a1a1a);">
+                    <div class="hover-overlay"><a href="#" class="go-btn">进入游戏</a><a href="#">官网</a> | <a href="#">礼包</a></div>
+                </div>
+                <h3>百战无双</h3><p>策略国战手游</p>
+            </div>
+            <div class="game-item">
+                <div class="item-img" style="background: linear-gradient(135deg, #1a1005, #5a3a15);">
+                    <div class="hover-overlay"><a href="#" class="go-btn">进入游戏</a><a href="#">官网</a> | <a href="#">礼包</a></div>
+                </div>
+                <h3>龙城传奇</h3><p>复古高爆，畅爽打金！</p>
+            </div>
+            <div class="game-item">
+                <div class="item-img" style="background: linear-gradient(135deg, #2a0a3e, #5a1a7e);">
+                    <div class="hover-overlay"><a href="#" class="go-btn">进入游戏</a><a href="#">官网</a> | <a href="#">礼包</a></div>
+                </div>
+                <h3>战玲珑2</h3><p>唯美仙侠MMO</p>
+            </div>
+        </div>
+    </div>
+    <div class="layout-right">
+        <div class="section-title"><h2>新服预热</h2></div>
+        <div class="server-panel">
+            <div class="server-tabs"><span class="cur">最新开服</span><span>即将开服</span></div>
+            <div class="server-list">
+                <a href="#"><span class="time"><b>10-29</b> 12:10</span><span class="srv-name">幽灵骑士 661服 · 神火大陆</span><span class="go-srv">进入游戏</span></a>
+                <a href="#"><span class="time"><b>10-28</b> 12:10</span><span class="srv-name">幽灵骑士 660服 · 神火大陆</span><span class="go-srv">进入游戏</span></a>
+                <a href="#"><span class="time"><b>10-27</b> 12:10</span><span class="srv-name">幽灵骑士 659服 · 神火大陆</span><span class="go-srv">进入游戏</span></a>
+                <a href="#"><span class="time"><b>10-26</b> 12:10</span><span class="srv-name">幽灵骑士 658服 · 神火大陆</span><span class="go-srv">进入游戏</span></a>
+                <a href="#"><span class="time"><b>10-25</b> 12:10</span><span class="srv-name">幽灵骑士 657服 · 神火大陆</span><span class="go-srv">进入游戏</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== RECOMMEND GAMES + NEWS ===== -->
+<div class="layout-wrap">
+    <div class="layout-main">
+        <div class="section-title"><h2>推荐游戏</h2><a href="#" class="more">更多</a></div>
+        <div class="recommend-row">
+            <a href="#" class="recommend-item">
+                <div class="rec-img" style="background: linear-gradient(135deg, #0d1b3e, #1a3a6e);"></div>
+                <h3>神火大陆</h3>
+            </a>
+            <a href="#" class="recommend-item">
+                <div class="rec-img" style="background: linear-gradient(135deg, #3a0a0a, #7a1a1a);"></div>
+                <h3>百战无双</h3>
+            </a>
+            <a href="#" class="recommend-item">
+                <div class="rec-img" style="background: linear-gradient(135deg, #1a1005, #5a3a15);"></div>
+                <h3>龙城传奇</h3>
+            </a>
+        </div>
+    </div>
+    <div class="layout-right">
+        <div class="section-title"><h2>新闻中心</h2><a href="#" class="more">更多</a></div>
+        <div class="news-panel">
+            <div class="news-thumb" style="background: linear-gradient(135deg, #f5a623, #e8891c); display:flex; align-items:center; justify-content:center;">
+                <span style="color:#fff; font-size:20px; font-weight:700;">积分商城</span>
+            </div>
+            <div class="news-list">
+                <a href="#"><span class="news-date">04-14</span>客服中心</a>
+                <a href="#"><span class="news-date">04-14</span>平台帐号防盗指南</a>
+                <a href="#"><span class="news-date">04-14</span>举报外挂流程说明</a>
+                <a href="#"><span class="news-date">04-14</span>无法进入游戏怎么办？</a>
+                <a href="#"><span class="news-date">04-14</span>游戏平台游戏用户守则</a>
+                <a href="#"><span class="news-date">04-14</span>抵制外挂人人有责</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+    <div class="inner">
+        <div class="footer-logo">
+            <div class="ft-icon"><span>6D</span></div>
+            <h2>星期六游戏</h2>
+        </div>
+        <div class="footer-links">
+            <a href="#">关于我们</a><a href="#">联系我们</a><a href="#">版权声明</a><a href="#">用户协议</a><a href="#">隐私政策</a><a href="#">加入我们</a><a href="#">家长监护</a><a href="#">自律公约</a>
+        </div>
+        <div class="footer-copy">
+            Copyright &copy; 2024 &nbsp;&nbsp; 贵阳星期六网络科技有限公司 &nbsp;版权所有&nbsp;&nbsp;
+            <a href="#">黔ICP备2024021314号-2</a><br>
+            公司地址：贵州省贵阳市白云区云城街道尚品A3-3组团19栋数字内容产业园10楼104-11号
+        </div>
+        <div class="footer-icons">
+            <a href="#">公共信息安全<br>网络检查</a>
+            <a href="#">不良信息举报<br>中心</a>
+            <a href="#">广东省互联网违法<br>和不良信息举报中心</a>
+            <a href="#">网上有害信息<br>举报专区</a>
+            <a href="#">互联网文化经营<br>单位</a>
+        </div>
+        <div class="footer-warning">抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。适龄提示：适合18岁以上使用。</div>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const totalSlides = 5;
+    const wrap = document.getElementById('sliderWrap');
+    const dots = document.getElementById('sliderDots').children;
+
+    function goSlide(n) {
+        currentSlide = n;
+        wrap.style.transform = 'translateX(-' + (n * 100) + '%)';
+        for (let i = 0; i < dots.length; i++) dots[i].className = '';
+        dots[n].className = 'cur';
+    }
+
+    setInterval(function() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        goSlide(currentSlide);
+    }, 4000);
+</script>
+</body>
+</html>
