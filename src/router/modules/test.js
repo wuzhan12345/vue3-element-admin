@@ -20,6 +20,7 @@ const NestPage1 = () => import('@/views/test/nest/Page1.vue')
 const NestPage2 = () => import('@/views/test/nest/Page2.vue')
 const Iscache = () => import('@/views/test/Cache.vue')
 const Nocache = () => import('@/views/test/Nocache.vue')
+const MemberLevel = () => import('@/views/test/MemberLevel.vue')
 const ErrorLog = () => import('@/views/test/error-log/index.vue')
 
 export default [
@@ -121,6 +122,14 @@ export default [
             },
           },
         ],
+      },
+      {
+        path: 'member-level',
+        name: 'member-level',
+        component: MemberLevel,
+        meta: {
+          title: 'menu.member-level',
+        },
       },
       {
         path: 'error-log',

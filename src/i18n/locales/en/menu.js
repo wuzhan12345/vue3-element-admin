@@ -12,5 +12,6 @@ export default {
   nest: 'Nest page',
   nestPage1: 'Page1',
   nestPage2: 'Page2',
+  'member-level': 'Member Level',
   'test-error-log': 'Error log',
 }

@@ -12,5 +12,6 @@ export default {
   nest: '二级页面',
   nestPage1: 'Page1',
   nestPage2: 'Page2',
+  'member-level': '会员等级',
   'test-error-log': '测试错误日志',
 }
